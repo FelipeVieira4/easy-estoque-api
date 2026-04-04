@@ -6,23 +6,31 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
 @Entity
 @Table(name = "armazem_table")
+@Data()
 public class ArmazemModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Descrição do armazém não pode ser embranco")
+    @NotBlank(message = "Descrição do armazém não pode ser em branco")
     private String descricao;
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name="natureza_id",referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(
+    name="natureza_id",
+    referencedColumnName = "id",
+    nullable = true
+    )
     private NaturezaModel natureza;
 
+    @NotBlank(message = "Endereço obrigatório!")
+    private String endereco;
 }
