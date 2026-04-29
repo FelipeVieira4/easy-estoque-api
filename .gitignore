@@ -25,3 +25,5 @@ mvnw.cmd
 .project
 .classpath
 .settings
+.metadata
+.vscode
