@@ -2,14 +2,21 @@ package com.sysAppEstudo.easyEstoque.natureza;
 
 import org.springframework.stereotype.Component;
 
-import com.sysAppEstudo.easyEstoque.natureza.dto.NaturezaRequestDTO;
+import com.sysAppEstudo.easyEstoque.natureza.dto.NaturezaAlterarDTO;
+import com.sysAppEstudo.easyEstoque.natureza.dto.NaturezaCriarDTO;
 import com.sysAppEstudo.easyEstoque.natureza.dto.NaturezaResponseDTO;
 
 
 @Component
 public class NaturezaMapper {
 
-    public NaturezaModel toModel(NaturezaRequestDTO naturezaDto) {
+	public NaturezaModel toModel(NaturezaCriarDTO naturezaDto) {
+        NaturezaModel natureza = new NaturezaModel();
+        natureza.setDescricao(naturezaDto.descricao());
+        return natureza;
+    }
+	
+    public NaturezaModel toModel(NaturezaAlterarDTO naturezaDto) {
         NaturezaModel natureza = new NaturezaModel();
         natureza.setIdNatureza(naturezaDto.idNatureza());
         natureza.setDescricao(naturezaDto.descricao());

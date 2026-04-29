@@ -3,7 +3,8 @@ package com.sysAppEstudo.easyEstoque.natureza;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sysAppEstudo.easyEstoque.natureza.dto.NaturezaRequestDTO;
+import com.sysAppEstudo.easyEstoque.natureza.dto.NaturezaAlterarDTO;
+import com.sysAppEstudo.easyEstoque.natureza.dto.NaturezaCriarDTO;
 import com.sysAppEstudo.easyEstoque.natureza.dto.NaturezaResponseDTO;
 
 import jakarta.transaction.Transactional;
@@ -18,7 +19,7 @@ public class NaturezaService {
     private NaturezaMapper naturezaMapper;
 
     @Transactional
-    public NaturezaResponseDTO salvar(NaturezaRequestDTO naturezaDto) {
+    public NaturezaResponseDTO salvar(NaturezaCriarDTO naturezaDto) {
         var natureza = naturezaMapper.toModel(naturezaDto);
 
         natureza=repository.save(natureza);
@@ -26,7 +27,7 @@ public class NaturezaService {
     }
     
     @Transactional
-    public NaturezaResponseDTO alterar(NaturezaRequestDTO naturezaDto) {
+    public NaturezaResponseDTO alterar(NaturezaAlterarDTO naturezaDto) {
         var natureza = naturezaMapper.toModel(naturezaDto);
 
         if (natureza.getIdNatureza()==null){
